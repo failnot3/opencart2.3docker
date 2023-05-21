@@ -1,0 +1,49 @@
+version: '3.8' # Specifies the Docker Compose version
+
+services:
+  opencart:
+    build:
+      context: .  # Sets the build context to the current directory
+      dockerfile: Dockerfile  # Specifies the Dockerfile to use for building the image
+    ports:
+      - 8566:80  # Maps port 80 of the container to port 8566 on the host machine
+    depends_on:
+      - mysql  # Specifies that this service depends on the "mysql" service
+    environment:
+      - MYSQL_HOST=mysql  # Sets the hostname for the MySQL server
+    volumes:
+      - opencart_data:/var/www/html  # Mounts the Opencart data volume to the container
+
+  mysql:
+    image: mysql:5.7  # Uses the MySQL 5.7 Docker image
+    hostname: mysql  # Set the hostname for the MySQL service
+    environment:
+      MYSQL_ROOT_PASSWORD: VerySecurePass # Sets the root password for MySQL
+      MYSQL_DATABASE: opencart  # Creates a MySQL database named "opencart"
+      MYSQL_USER: example_opencart_user  # Creates a MySQL user named "example_opencart_user"
+      MYSQL_PASSWORD: example_opencart_password  # Sets a example password for the "example_opencart_user" user
+    volumes:
+      - mysql_data:/var/lib/mysql  # Mounts a persistent volume for storing MySQL data
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin  # Uses the phpMyAdmin Docker image
+    ports:
+      - 8080:80  # Maps port 80 of the container to port 8080 on the host machine
+    environment:
+      PMA_HOST: mysql  # Specifies the hostname of the MySQL server
+      PMA_USER: root  # Sets the phpMyAdmin username to "root"
+      PMA_PASSWORD: VerySecurePass  # Sets the phpMyAdmin password
+
+  filebrowser:
+    image: filebrowser/filebrowser  # Uses the FileBrowser Docker image
+    ports:
+      - 8081:80  # Maps port 80 of the container to port 8081 on the host machine
+    volumes:
+      - filebrowser_data:/srv  # Mounts a persistent volume for storing FileBrowser data
+      - opencart_data:/srv/opencart  # Mounts the Opencart files to the FileBrowser container
+      - mysql_data:/srv/mysql  # Mounts the MySQL data files to the FileBrowser container
+
+volumes:
+  mysql_data:  # Creates a named volume for storing MySQL data
+  filebrowser_data:  # Creates a named volume for storing FileBrowser data
+  opencart_data:  # Creates a named volume for storing Opencart data
