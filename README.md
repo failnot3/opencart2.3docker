@@ -33,7 +33,7 @@ docker build -t opencart-image .
 ### Docker Compose Configuration
 This Docker Compose configuration defines a set of services for running an OpenCart e-commerce application along with a MySQL database, phpMyAdmin, and FileBrowser.
 
-* Services
+#### Services
 - opencart: The OpenCart service builds the OpenCart image using the specified Dockerfile. It exposes port 80 of the container, which is mapped to port 8566 on the host machine. It depends on the "mysql" service and sets the MySQL hostname to "mysql". The Opencart data is mounted to the container using the "opencart_data" volume.
 
 - mysql: The MySQL service uses the MySQL 5.7 Docker image. It sets the hostname to "mysql" and defines environment variables for the MySQL root password, database name, user, and password. The MySQL data is stored in the "mysql_data" volume.
