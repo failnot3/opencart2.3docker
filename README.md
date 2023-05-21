@@ -42,7 +42,7 @@ This Docker Compose configuration defines a set of services for running an OpenC
 
 - filebrowser: The FileBrowser service uses the FileBrowser Docker image. It maps port 80 of the container to port 8081 on the host machine. It mounts the "filebrowser_data" volume for storing FileBrowser data. It also mounts the "opencart_data" volume to access Opencart files and the "mysql_data" volume to access MySQL data.
 
-* Volumes
+#### Volumes
 - mysql_data: This volume is created to store MySQL data. It is mounted to the "/var/lib/mysql" directory in the MySQL service and the "/srv/mysql" directory in the FileBrowser service.
 
 - filebrowser_data: This volume is created to store FileBrowser data. It is mounted to the "/srv" directory in the FileBrowser service.
