@@ -72,7 +72,7 @@ You can then access OpenCart by navigating to http://localhost:8566 in your web 
 #BG
 
  opencart2.3docker
-Разгъни OpenCart V2.3.0.2 чрез Docker
+OpenCart V2.3.0.2 чрез Docker
 
 ## OpenCart Docker изображение
 Това Docker изображение предоставя готова за употреба среда за изпълнение на OpenCart, платформа за електронна търговия с отворен код. То настройва уеб сървър Apache с PHP и инсталира всички необходими зависимости за изпълнение на OpenCart версия 2.3. Причината за създаването бе липсата на алтернатива, която комбинира всички тези контейнери за бърз deploy при разработка на плъгини.
