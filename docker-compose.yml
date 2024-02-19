@@ -41,7 +41,7 @@ services:
     environment:  # Sets environment variables for the service
       FTP_USER: "ftpuser"  # Specifies the FTP username
       FTP_PASS: "ftppassword"  # Specifies the FTP password
-      PASV_ADDRESS: "your_vm_ip"  # Specifies the IP address of the FTP server
+      PASV_ADDRESS: "your_ip"  # Specifies the IP address of the FTP server
     volumes:  # Mounts volumes to the container
       - opencart_data:/home/ftpuser/opencart  # Mounts the opencart_data volume to /home/ftpuser/opencart in the container
 
